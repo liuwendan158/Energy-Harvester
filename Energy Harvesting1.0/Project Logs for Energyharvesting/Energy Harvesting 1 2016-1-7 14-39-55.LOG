@@ -1,0 +1,4 @@
+Change Component Designator: OldDesignator=* NewDesignator=Bridge
+Added Component: Designator=RT?(6-0805_N)
+Added Member To Class: ClassName=Energyharvesting Member=Component RT? Res Thermal
+Added Room: Name=Energyharvesting

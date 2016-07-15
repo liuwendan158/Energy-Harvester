@@ -1,0 +1,39 @@
+Removed Member From Class: ClassName=Energyharvesting Member=BQ25504
+Removed Member From Class: ClassName=Energyharvesting Member=Bridge
+Added Component: Designator=*(MB6S)
+Added Component: Designator=U?(BQ25504)
+Added Pin To Net: NetName=NetChrv_2 Pin=*-3
+Added Pin To Net: NetName=GND Pin=*-4
+Added Pin To Net: NetName=GND Pin=U?-1
+Added Pin To Net: NetName=NetChrv_2 Pin=U?-3
+Added Pin To Net: NetName=GND Pin=U?-5
+Added Pin To Net: NetName=NetRov1_1 Pin=U?-6
+Added Pin To Net: NetName=NetRok3_2 Pin=U?-7
+Added Pin To Net: NetName=NetRuv1_1 Pin=U?-8
+Added Pin To Net: NetName=NetRok2_2 Pin=U?-9
+Added Pin To Net: NetName=NetRok1_2 Pin=U?-10
+Added Pin To Net: NetName=GND Pin=U?-12
+Added Pin To Net: NetName=GND Pin=U?-13
+Added Pin To Net: NetName=NetCbyp_1 Pin=U?-15
+Change Net Name : Old Net Name=NetChrv_2 New Net Name=Net*_3
+Added Pin To Net: NetName=Net*_1 Pin=*-1
+Added Pin To Net: NetName=Net*_1 Pin=P1-2
+Added Net: Name=Net*_1
+Added Pin To Net: NetName=Net*_2 Pin=*-2
+Added Pin To Net: NetName=Net*_2 Pin=P1-1
+Added Net: Name=Net*_2
+Added Pin To Net: NetName=NetCref_2 Pin=Cref-2
+Added Pin To Net: NetName=NetCref_2 Pin=U?-4
+Added Net: Name=NetCref_2
+Added Pin To Net: NetName=NetLbst_2 Pin=Lbst-2
+Added Pin To Net: NetName=NetLbst_2 Pin=U?-16
+Added Net: Name=NetLbst_2
+Added Pin To Net: NetName=NetP2_2 Pin=P2-2
+Added Pin To Net: NetName=NetP2_2 Pin=U?-14
+Added Net: Name=NetP2_2
+Added Pin To Net: NetName=NetP2_3 Pin=P2-3
+Added Pin To Net: NetName=NetP2_3 Pin=U?-11
+Added Net: Name=NetP2_3
+Added Member To Class: ClassName=Energyharvesting Member=Component * Bridge MB6s
+Added Member To Class: ClassName=Energyharvesting Member=Component U? BQ25504RGTT
+Added Room: Name=Energyharvesting

@@ -1,0 +1,188 @@
+Protel Design System Design Rule Check
+PCB File : D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc
+Date     : 2016/1/8
+Time     : 16:23:15
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Silk to Silk (Clearance=0.254mm) (All),(All)
+   Violation between Text "D1" (51.795mm,28.847mm)  Top Overlay and 
+                     Text "Cstor" (46.171mm,30.338mm)  Top Overlay
+Rule Violations :1
+
+Processing Rule : Silk To Solder Mask (Clearance=0.203mm) (IsPad),(All)
+   Violation between Track (36.367mm,8.396mm)(36.367mm,9.596mm)  Top Overlay and 
+                     Pad Ruv1-2(35.467mm,8.996mm)  Top Layer
+   Violation between Track (36.367mm,8.396mm)(36.367mm,9.596mm)  Top Overlay and 
+                     Pad Ruv1-1(37.267mm,8.996mm)  Top Layer
+   Violation between Track (17.772mm,2.733mm)(17.772mm,3.933mm)  Top Overlay and 
+                     Pad Roc1-2(18.672mm,3.333mm)  Top Layer
+   Violation between Track (17.772mm,2.733mm)(17.772mm,3.933mm)  Top Overlay and 
+                     Pad Roc1-1(16.872mm,3.333mm)  Top Layer
+   Violation between Track (17.941mm,8.565mm)(17.941mm,9.765mm)  Top Overlay and 
+                     Pad Roc2-2(17.041mm,9.165mm)  Top Layer
+   Violation between Track (17.941mm,8.565mm)(17.941mm,9.765mm)  Top Overlay and 
+                     Pad Roc2-1(18.841mm,9.165mm)  Top Layer
+   Violation between Track (26.139mm,8.734mm)(26.139mm,9.934mm)  Top Overlay and 
+                     Pad Rov1-2(25.239mm,9.334mm)  Top Layer
+   Violation between Track (26.139mm,8.734mm)(26.139mm,9.934mm)  Top Overlay and 
+                     Pad Rov1-1(27.039mm,9.334mm)  Top Layer
+   Violation between Track (36.113mm,2.31mm)(36.113mm,3.51mm)  Top Overlay and 
+                     Pad Ruv2-2(37.013mm,2.91mm)  Top Layer
+   Violation between Track (36.113mm,2.31mm)(36.113mm,3.51mm)  Top Overlay and 
+                     Pad Ruv2-1(35.213mm,2.91mm)  Top Layer
+   Violation between Track (26.009mm,2.293mm)(26.009mm,3.493mm)  Top Overlay and 
+                     Pad Rov2-2(25.109mm,2.893mm)  Top Layer
+   Violation between Track (26.009mm,2.293mm)(26.009mm,3.493mm)  Top Overlay and 
+                     Pad Rov2-1(26.909mm,2.893mm)  Top Layer
+   Violation between Track (44.405mm,2.124mm)(44.405mm,3.324mm)  Top Overlay and 
+                     Pad Rok3-2(43.505mm,2.724mm)  Top Layer
+   Violation between Track (44.405mm,2.124mm)(44.405mm,3.324mm)  Top Overlay and 
+                     Pad Rok3-1(45.305mm,2.724mm)  Top Layer
+   Violation between Track (44.126mm,8.354mm)(44.126mm,9.553mm)  Top Overlay and 
+                     Pad Rok2-2(43.226mm,8.953mm)  Top Layer
+   Violation between Track (44.126mm,8.354mm)(44.126mm,9.553mm)  Top Overlay and 
+                     Pad Rok2-1(45.026mm,8.953mm)  Top Layer
+   Violation between Track (51.242mm,8.116mm)(52.442mm,8.116mm)  Top Overlay and 
+                     Pad Rok1-2(51.842mm,9.016mm)  Top Layer
+   Violation between Track (51.242mm,8.116mm)(52.442mm,8.116mm)  Top Overlay and 
+                     Pad Rok1-1(51.842mm,7.216mm)  Top Layer
+   Violation between Track (25.926mm,18.293mm)(25.926mm,18.768mm)  Top Overlay and 
+                     Pad BQ25504-1(26.151mm,17.793mm)  Top Layer
+   Violation between Track (25.926mm,15.318mm)(25.926mm,15.793mm)  Top Overlay and 
+                     Pad BQ25504-4(26.151mm,16.293mm)  Top Layer
+   Violation between Track (25.926mm,15.318mm)(26.401mm,15.318mm)  Top Overlay and 
+                     Pad BQ25504-5(26.901mm,15.543mm)  Top Layer
+   Violation between Track (28.901mm,15.318mm)(29.376mm,15.318mm)  Top Overlay and 
+                     Pad BQ25504-8(28.401mm,15.543mm)  Top Layer
+   Violation between Track (29.376mm,15.318mm)(29.376mm,15.793mm)  Top Overlay and 
+                     Pad BQ25504-9(29.151mm,16.293mm)  Top Layer
+   Violation between Track (29.376mm,18.293mm)(29.376mm,18.768mm)  Top Overlay and 
+                     Pad BQ25504-12(29.151mm,17.793mm)  Top Layer
+   Violation between Track (28.901mm,18.768mm)(29.376mm,18.768mm)  Top Overlay and 
+                     Pad BQ25504-13(28.401mm,18.543mm)  Top Layer
+   Violation between Track (25.926mm,18.768mm)(26.401mm,18.768mm)  Top Overlay and 
+                     Pad BQ25504-16(26.901mm,18.543mm)  Top Layer
+   Violation between Track (34.148mm,25.825mm)(34.148mm,25.925mm)  Top Overlay and 
+                     Pad Lbst-1(33.598mm,25.875mm)  Top Layer
+   Violation between Track (57.234mm,25.696mm)(57.734mm,26.096mm)  Top Overlay and 
+                     Pad D1-2(56.284mm,26.846mm)  Top Layer
+   Violation between Track (57.234mm,27.996mm)(57.734mm,27.596mm)  Top Overlay and 
+                     Pad D1-2(56.284mm,26.846mm)  Top Layer
+   Violation between Track (55.534mm,25.696mm)(57.234mm,25.696mm)  Top Overlay and 
+                     Pad D1-2(56.284mm,26.846mm)  Top Layer
+   Violation between Track (55.534mm,27.996mm)(57.234mm,27.996mm)  Top Overlay and 
+                     Pad D1-2(56.284mm,26.846mm)  Top Layer
+   Violation between Track (51.634mm,25.696mm)(51.634mm,27.996mm)  Top Overlay and 
+                     Pad D1-1(52.784mm,26.846mm)  Top Layer
+   Violation between Track (51.634mm,25.696mm)(53.534mm,25.696mm)  Top Overlay and 
+                     Pad D1-1(52.784mm,26.846mm)  Top Layer
+   Violation between Track (51.634mm,27.996mm)(53.534mm,27.996mm)  Top Overlay and 
+                     Pad D1-1(52.784mm,26.846mm)  Top Layer
+   Violation between Text "Roc2" (14.689mm,10.935mm)  Top Overlay and 
+                     Pad Free-10(21.401mm,11.72mm)  Multi-Layer
+   Violation between Text "Lbst" (32.757mm,26.948mm)  Top Overlay and 
+                     Pad Free-11(35.014mm,28.182mm)  Multi-Layer
+Rule Violations :36
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)
+   Violation between Pad BQ25504-16(26.901mm,18.543mm)  Top Layer and 
+                     Pad BQ25504-1(26.151mm,17.793mm)  Top Layer
+   Violation between Pad BQ25504-2(26.151mm,17.293mm)  Top Layer and 
+                     Pad BQ25504-1(26.151mm,17.793mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-1(26.151mm,17.793mm)  Top Layer
+   Violation between Pad BQ25504-3(26.151mm,16.793mm)  Top Layer and 
+                     Pad BQ25504-2(26.151mm,17.293mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-2(26.151mm,17.293mm)  Top Layer
+   Violation between Pad BQ25504-4(26.151mm,16.293mm)  Top Layer and 
+                     Pad BQ25504-3(26.151mm,16.793mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-3(26.151mm,16.793mm)  Top Layer
+   Violation between Pad BQ25504-5(26.901mm,15.543mm)  Top Layer and 
+                     Pad BQ25504-4(26.151mm,16.293mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-4(26.151mm,16.293mm)  Top Layer
+   Violation between Pad BQ25504-6(27.401mm,15.543mm)  Top Layer and 
+                     Pad BQ25504-5(26.901mm,15.543mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-5(26.901mm,15.543mm)  Top Layer
+   Violation between Pad BQ25504-7(27.901mm,15.543mm)  Top Layer and 
+                     Pad BQ25504-6(27.401mm,15.543mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-6(27.401mm,15.543mm)  Top Layer
+   Violation between Pad BQ25504-8(28.401mm,15.543mm)  Top Layer and 
+                     Pad BQ25504-7(27.901mm,15.543mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-7(27.901mm,15.543mm)  Top Layer
+   Violation between Pad BQ25504-9(29.151mm,16.293mm)  Top Layer and 
+                     Pad BQ25504-8(28.401mm,15.543mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-8(28.401mm,15.543mm)  Top Layer
+   Violation between Pad BQ25504-10(29.151mm,16.793mm)  Top Layer and 
+                     Pad BQ25504-9(29.151mm,16.293mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-9(29.151mm,16.293mm)  Top Layer
+   Violation between Pad BQ25504-11(29.151mm,17.293mm)  Top Layer and 
+                     Pad BQ25504-10(29.151mm,16.793mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-10(29.151mm,16.793mm)  Top Layer
+   Violation between Pad BQ25504-12(29.151mm,17.793mm)  Top Layer and 
+                     Pad BQ25504-11(29.151mm,17.293mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-11(29.151mm,17.293mm)  Top Layer
+   Violation between Pad BQ25504-13(28.401mm,18.543mm)  Top Layer and 
+                     Pad BQ25504-12(29.151mm,17.793mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-12(29.151mm,17.793mm)  Top Layer
+   Violation between Pad BQ25504-14(27.901mm,18.543mm)  Top Layer and 
+                     Pad BQ25504-13(28.401mm,18.543mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-13(28.401mm,18.543mm)  Top Layer
+   Violation between Pad BQ25504-15(27.401mm,18.543mm)  Top Layer and 
+                     Pad BQ25504-14(27.901mm,18.543mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-14(27.901mm,18.543mm)  Top Layer
+   Violation between Pad BQ25504-16(26.901mm,18.543mm)  Top Layer and 
+                     Pad BQ25504-15(27.401mm,18.543mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-15(27.401mm,18.543mm)  Top Layer
+   Violation between Pad BQ25504-17(27.651mm,17.043mm)  Top Layer and 
+                     Pad BQ25504-16(26.901mm,18.543mm)  Top Layer
+   Violation between Pad Cbyp-2(40.17mm,28.003mm)  Top Layer and 
+                     Pad Cbyp-1(40.17mm,26.503mm)  Top Layer
+   Violation between Pad Cstor-2(46.367mm,28.122mm)  Top Layer and 
+                     Pad Cstor-1(46.367mm,26.622mm)  Top Layer
+   Violation between Pad Cref-2(23.806mm,26.341mm)  Top Layer and 
+                     Pad Cref-1(23.806mm,27.841mm)  Top Layer
+Rule Violations :35
+
+Processing Rule : Hole To Hole Clearance (Gap=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.203mm) (Max=0.508mm) (Preferred=0.254mm) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.152mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+
+Violations Detected : 72
+Time Elapsed        : 00:00:01

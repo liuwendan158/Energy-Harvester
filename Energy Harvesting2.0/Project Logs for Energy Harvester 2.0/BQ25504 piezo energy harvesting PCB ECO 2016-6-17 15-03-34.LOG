@@ -1,0 +1,79 @@
+Added Component: Designator=*(MB6S)
+Added Component: Designator=Cbyp(0402)
+Added Component: Designator=Chvr(0402)
+Added Component: Designator=Cstor(0402)
+Added Component: Designator=Dstor(0402)
+Added Component: Designator=Lbst(0402)
+Added Component: Designator=P1(HDR1X2)
+Added Component: Designator=ROK1(0402)
+Added Component: Designator=ROK2(0402)
+Added Component: Designator=ROK3(0402)
+Added Component: Designator=ROV1(0402)
+Added Component: Designator=ROV2(0402)
+Added Component: Designator=RUV2(0402)
+Added Component: Designator=RUVl(0402)
+Added Component: Designator=U1(BQ25504rgtt)
+Added Pin To Net: NetName=1 Pin=*-1
+Added Pin To Net: NetName=1 Pin=P1-2
+Added Net: Name=1
+Added Pin To Net: NetName=2 Pin=*-2
+Added Pin To Net: NetName=2 Pin=P1-1
+Added Net: Name=2
+Added Pin To Net: NetName=AVSS Pin=*-4
+Added Pin To Net: NetName=AVSS Pin=Cbyp-2
+Added Pin To Net: NetName=AVSS Pin=Chvr-2
+Added Pin To Net: NetName=AVSS Pin=Cstor-2
+Added Pin To Net: NetName=AVSS Pin=ROK1-2
+Added Pin To Net: NetName=AVSS Pin=ROV1-2
+Added Pin To Net: NetName=AVSS Pin=RUVl-2
+Added Pin To Net: NetName=AVSS Pin=U1-1
+Added Pin To Net: NetName=AVSS Pin=U1-12
+Added Pin To Net: NetName=AVSS Pin=U1-13
+Added Pin To Net: NetName=AVSS Pin=U1-17
+Added Net: Name=AVSS
+Added Pin To Net: NetName=INPUT Pin=*-3
+Added Pin To Net: NetName=INPUT Pin=Chvr-1
+Added Pin To Net: NetName=INPUT Pin=Lbst-1
+Added Net: Name=INPUT
+Added Pin To Net: NetName=LBST Pin=Lbst-2
+Added Pin To Net: NetName=LBST Pin=U1-16
+Added Net: Name=LBST
+Added Pin To Net: NetName=OKHYST Pin=ROK2-1
+Added Pin To Net: NetName=OKHYST Pin=ROK3-2
+Added Pin To Net: NetName=OKHYST Pin=U1-9
+Added Net: Name=OKHYST
+Added Pin To Net: NetName=OKPROG Pin=ROK1-1
+Added Pin To Net: NetName=OKPROG Pin=ROK2-2
+Added Pin To Net: NetName=OKPROG Pin=U1-10
+Added Net: Name=OKPROG
+Added Pin To Net: NetName=OTPROG Pin=U1-5
+Added Net: Name=OTPROG
+Added Pin To Net: NetName=VBAT_OK Pin=U1-11
+Added Net: Name=VBAT_OK
+Added Pin To Net: NetName=VBAT_OV Pin=ROV1-1
+Added Pin To Net: NetName=VBAT_OV Pin=ROV2-2
+Added Pin To Net: NetName=VBAT_OV Pin=U1-6
+Added Net: Name=VBAT_OV
+Added Pin To Net: NetName=VBAT_UV Pin=RUV2-2
+Added Pin To Net: NetName=VBAT_UV Pin=RUVl-1
+Added Pin To Net: NetName=VBAT_UV Pin=U1-8
+Added Net: Name=VBAT_UV
+Added Pin To Net: NetName=VBAT Pin=U1-14
+Added Net: Name=VBAT
+Added Pin To Net: NetName=VIN Pin=U1-2
+Added Net: Name=VIN
+Added Pin To Net: NetName=VOCSAMP Pin=U1-3
+Added Net: Name=VOCSAMP
+Added Pin To Net: NetName=VRDIV Pin=ROK3-1
+Added Pin To Net: NetName=VRDIV Pin=ROV2-1
+Added Pin To Net: NetName=VRDIV Pin=RUV2-1
+Added Pin To Net: NetName=VRDIV Pin=U1-7
+Added Net: Name=VRDIV
+Added Pin To Net: NetName=VREFSAMP Pin=U1-4
+Added Net: Name=VREFSAMP
+Added Pin To Net: NetName=VSTOR Pin=Cbyp-1
+Added Pin To Net: NetName=VSTOR Pin=Cstor-1
+Added Pin To Net: NetName=VSTOR Pin=U1-15
+Added Net: Name=VSTOR
+Added Class: Name=piezo energy harvesting 4.0
+Added Room: Name=piezo energy harvesting 4.0

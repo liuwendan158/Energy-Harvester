@@ -1,0 +1,632 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : sans-serif;
+			color : white;
+			background-color : #21489e;
+			padding: 0.3em;
+		}
+		body {
+			font-family : verdana;
+		}
+		td, th {
+			padding: 0.5em;
+			text-align : center;
+			width : 18%;
+		}
+		th {
+			background-color : #A6CAF0;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+		}
+		
+		.DRC_summary_header {							
+			padding-bottom : 0.1em;
+			border : 0px solid black;							
+			width: 100%;
+                        align: right;
+                        
+		}
+
+		.DRC_summary_header_col1, 
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3
+		{
+			color : black;
+			font-size:150%;
+                        padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2: 0em;
+			border : 0px solid black;
+			width : auto;
+			vertical-align: top;
+			font-weight: bold;				
+		}
+		
+		.DRC_summary_header_col1 	
+		{		                       
+			text-align: right;
+                        width: auto;	
+		}
+
+		.DRC_summary_header_col2 	
+		{		
+			text-align: center;	
+		}
+
+		.DRC_summary_header_col3 	
+		{		
+			text-align: left;	
+		}
+
+
+		
+		.header_holder
+		{
+		Width = 100%;
+		border = 0px solid green;
+		padding = 0;
+		}
+		
+		
+		
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+                {
+			left:0;
+			top:0;
+			padding-top : 0.1em;			
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top
+
+		}
+		.front_matter {	
+			
+			margin-top: 5px;
+ 			margin-left: 0px;					 			
+ 			horizontal-align: left;
+		}
+				
+		
+		.front_matter_column1 {
+			width : 10em;	
+			text-align  : right;
+			padding-right:0.1em;
+			
+		}
+		
+		.front_matter_column2 {
+                        width: 0.1em;
+			align: center;
+			text-align : center;
+			margin-right  : 0.1em;	
+			margin-left   : 0.1em;
+		}
+		.front_matter_column3 {
+			width         : auto;  
+			text-align    : left;	
+			margin-right  : 0.5em;				
+		}
+		
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : right;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #EEEEE0 
+		}
+		tr.onmouseout_even { 
+			background-color : #F3F3E3   
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : lightYellow
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #008000 
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://D:\Users\Public\Documents\Altium\AD13\Templates\AD-rgb_logo_223x64.gif
+		"><a href="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports" class="customize"><acronym title="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports">customize</acronym></a><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td Style="width:70%">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">2016/1/8</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">16:23:15</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3"><a href="file:///D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc" class="file"><acronym title="D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc">D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td Style="Width:30%">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3" style="color : red">72</td></tr>
+</table>
+</td>
+</table>
+<hr><a name="IDS4BMGCABAY2YP1BU5BXI0A4RKEDL4WD0AGL25QDZYJ15R0HQIUHD"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLWTCOGOMBPZBKPW1ZZWGWZATXPXZFWKJU02OCTXTGDRSC21QHXM">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXF4CDT3Y2VOYE0NNP0FY5VRVINSWIY5GUT4MITVW0FJWKDSUZSP">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDK2TCU3AOCBLEFVF5TKPKFETEQIICGLA4H2ATH5K4DPAOTX5UC1EG">Silk To Solder Mask (Clearance=0.203mm) (IsPad),(All)</a></td>
+<td class="column2">36</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNN3NYE2UXQBEKUABVQRYYWXRIF4M0CDHQK2RNXLP1GZOERYTMHJG">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">35</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZLTAR5YFVDKUJBYKBKAHWLN2WCI5OICQ4YDQR2V33FW4L5ZQD5K">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOH21ABVRKXKUEOJBMFJJF4MJ0IUTANH3FIUVPLLGLBMXTDLD5OIG">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPYKVF1TJT54TKO2KKUOOSJEMIFGBF0YGL0F3MCEALHUHURJPGHDM">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXDHG00R24XWKFML4HZYZXHIDDHS1CTBHBA4E3ZHB4OMX2S1GJ0P">Width Constraint (Min=0.203mm) (Max=0.508mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEGZMFL4XLSBJODKWYXRTFPHCQIZ0RBT2HH1NN0HRSGNL23XRYYOC">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEVMUXR2XI2ZMPZJS1FUDOEYTDDIXPW35QZO2NNHUB1TBW0T5GA1">Clearance Constraint (Gap=0.152mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4LYTE0CFGWSPWROCRVQRBNKRF3RN3EEAIGZMQ45QWROTC3NWLF">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDV1XLXFVULB3NGM2BZTOZANRQGKPSZA4ME5KKGCGOQ0YLNIBV2P0I">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">72</td>
+</tr>
+</table><br><hr><a name="IDXF4CDT3Y2VOYE0NNP0FY5VRVINSWIY5GUT4MITVW0FJWKDSUZSP"><table>
+<tr>
+<th style="text-align : left" colspan="2" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5482.5mil|Location2.X=5582.474mil|Location1.Y=3756.5mil|Location2.Y=3836.481mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5482.5mil|Location2.X=5582.474mil|Location1.Y=3756.5mil|Location2.Y=3836.481mil|Absolute=True">Text "D1" (51.795mm,28.847mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5261.1mil|Location2.X=5541.016mil|Location1.Y=3815.21mil|Location2.Y=3895.191mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5261.1mil|Location2.X=5541.016mil|Location1.Y=3815.21mil|Location2.Y=3895.191mil|Absolute=True">Text "Cstor" (46.171mm,30.338mm)  Top Overlay</acronym></a></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br><a name="IDK2TCU3AOCBLEFVF5TKPKFETEQIICGLA4H2ATH5K4DPAOTX5UC1EG"><table>
+<tr>
+<th style="text-align : left" colspan="2" class="rule">Silk To Solder Mask (Clearance=0.203mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4881.153mil|Location2.X=4889.027mil|Location1.Y=2957.401mil|Location2.Y=3012.519mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4881.153mil|Location2.X=4889.027mil|Location1.Y=2957.401mil|Location2.Y=3012.519mil|Absolute=True">Track (36.367mm,8.396mm)(36.367mm,9.596mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4822.035mil|Location2.X=4877.279mil|Location1.Y=2953.401mil|Location2.Y=3016.519mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4822.035mil|Location2.X=4877.279mil|Location1.Y=2953.401mil|Location2.Y=3016.519mil|Absolute=True">Pad Ruv1-2(35.467mm,8.996mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4881.153mil|Location2.X=4889.027mil|Location1.Y=2957.401mil|Location2.Y=3012.519mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4881.153mil|Location2.X=4889.027mil|Location1.Y=2957.401mil|Location2.Y=3012.519mil|Absolute=True">Track (36.367mm,8.396mm)(36.367mm,9.596mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4892.901mil|Location2.X=4948.145mil|Location1.Y=2953.401mil|Location2.Y=3016.519mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4892.901mil|Location2.X=4948.145mil|Location1.Y=2953.401mil|Location2.Y=3016.519mil|Absolute=True">Pad Ruv1-1(37.267mm,8.996mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4149.063mil|Location2.X=4156.937mil|Location1.Y=2734.451mil|Location2.Y=2789.569mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4149.063mil|Location2.X=4156.937mil|Location1.Y=2734.451mil|Location2.Y=2789.569mil|Absolute=True">Track (17.772mm,2.733mm)(17.772mm,3.933mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4160.811mil|Location2.X=4216.055mil|Location1.Y=2730.451mil|Location2.Y=2793.569mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4160.811mil|Location2.X=4216.055mil|Location1.Y=2730.451mil|Location2.Y=2793.569mil|Absolute=True">Pad Roc1-2(18.672mm,3.333mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4149.063mil|Location2.X=4156.937mil|Location1.Y=2734.451mil|Location2.Y=2789.569mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4149.063mil|Location2.X=4156.937mil|Location1.Y=2734.451mil|Location2.Y=2789.569mil|Absolute=True">Track (17.772mm,2.733mm)(17.772mm,3.933mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4089.945mil|Location2.X=4145.189mil|Location1.Y=2730.451mil|Location2.Y=2793.569mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4089.945mil|Location2.X=4145.189mil|Location1.Y=2730.451mil|Location2.Y=2793.569mil|Absolute=True">Pad Roc1-1(16.872mm,3.333mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4155.713mil|Location2.X=4163.587mil|Location1.Y=2964.061mil|Location2.Y=3019.179mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4155.713mil|Location2.X=4163.587mil|Location1.Y=2964.061mil|Location2.Y=3019.179mil|Absolute=True">Track (17.941mm,8.565mm)(17.941mm,9.765mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4096.595mil|Location2.X=4151.839mil|Location1.Y=2967.935mil|Location2.Y=3015.305mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4096.595mil|Location2.X=4151.839mil|Location1.Y=2967.935mil|Location2.Y=3015.305mil|Absolute=True">Pad Roc2-2(17.041mm,9.165mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4155.713mil|Location2.X=4163.587mil|Location1.Y=2964.061mil|Location2.Y=3019.179mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4155.713mil|Location2.X=4163.587mil|Location1.Y=2964.061mil|Location2.Y=3019.179mil|Absolute=True">Track (17.941mm,8.565mm)(17.941mm,9.765mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4167.461mil|Location2.X=4222.705mil|Location1.Y=2967.935mil|Location2.Y=3015.305mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4167.461mil|Location2.X=4222.705mil|Location1.Y=2967.935mil|Location2.Y=3015.305mil|Absolute=True">Pad Roc2-1(18.841mm,9.165mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4478.503mil|Location2.X=4486.377mil|Location1.Y=2970.721mil|Location2.Y=3025.839mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4478.503mil|Location2.X=4486.377mil|Location1.Y=2970.721mil|Location2.Y=3025.839mil|Absolute=True">Track (26.139mm,8.734mm)(26.139mm,9.934mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4419.385mil|Location2.X=4474.629mil|Location1.Y=2966.721mil|Location2.Y=3029.839mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4419.385mil|Location2.X=4474.629mil|Location1.Y=2966.721mil|Location2.Y=3029.839mil|Absolute=True">Pad Rov1-2(25.239mm,9.334mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4478.503mil|Location2.X=4486.377mil|Location1.Y=2970.721mil|Location2.Y=3025.839mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4478.503mil|Location2.X=4486.377mil|Location1.Y=2970.721mil|Location2.Y=3025.839mil|Absolute=True">Track (26.139mm,8.734mm)(26.139mm,9.934mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4490.251mil|Location2.X=4545.495mil|Location1.Y=2966.721mil|Location2.Y=3029.839mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4490.251mil|Location2.X=4545.495mil|Location1.Y=2966.721mil|Location2.Y=3029.839mil|Absolute=True">Pad Rov1-1(27.039mm,9.334mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4871.173mil|Location2.X=4879.047mil|Location1.Y=2717.811mil|Location2.Y=2772.929mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4871.173mil|Location2.X=4879.047mil|Location1.Y=2717.811mil|Location2.Y=2772.929mil|Absolute=True">Track (36.113mm,2.31mm)(36.113mm,3.51mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4882.921mil|Location2.X=4938.165mil|Location1.Y=2713.811mil|Location2.Y=2776.929mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4882.921mil|Location2.X=4938.165mil|Location1.Y=2713.811mil|Location2.Y=2776.929mil|Absolute=True">Pad Ruv2-2(37.013mm,2.91mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4871.173mil|Location2.X=4879.047mil|Location1.Y=2717.811mil|Location2.Y=2772.929mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4871.173mil|Location2.X=4879.047mil|Location1.Y=2717.811mil|Location2.Y=2772.929mil|Absolute=True">Track (36.113mm,2.31mm)(36.113mm,3.51mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4812.055mil|Location2.X=4867.299mil|Location1.Y=2713.811mil|Location2.Y=2776.929mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4812.055mil|Location2.X=4867.299mil|Location1.Y=2713.811mil|Location2.Y=2776.929mil|Absolute=True">Pad Ruv2-1(35.213mm,2.91mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4473.363mil|Location2.X=4481.237mil|Location1.Y=2717.121mil|Location2.Y=2772.239mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4473.363mil|Location2.X=4481.237mil|Location1.Y=2717.121mil|Location2.Y=2772.239mil|Absolute=True">Track (26.009mm,2.293mm)(26.009mm,3.493mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4414.245mil|Location2.X=4469.489mil|Location1.Y=2720.995mil|Location2.Y=2768.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4414.245mil|Location2.X=4469.489mil|Location1.Y=2720.995mil|Location2.Y=2768.365mil|Absolute=True">Pad Rov2-2(25.109mm,2.893mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4473.363mil|Location2.X=4481.237mil|Location1.Y=2717.121mil|Location2.Y=2772.239mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4473.363mil|Location2.X=4481.237mil|Location1.Y=2717.121mil|Location2.Y=2772.239mil|Absolute=True">Track (26.009mm,2.293mm)(26.009mm,3.493mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4485.111mil|Location2.X=4540.355mil|Location1.Y=2720.995mil|Location2.Y=2768.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4485.111mil|Location2.X=4540.355mil|Location1.Y=2720.995mil|Location2.Y=2768.365mil|Absolute=True">Pad Rov2-1(26.909mm,2.893mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5197.633mil|Location2.X=5205.507mil|Location1.Y=2710.491mil|Location2.Y=2765.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5197.633mil|Location2.X=5205.507mil|Location1.Y=2710.491mil|Location2.Y=2765.609mil|Absolute=True">Track (44.405mm,2.124mm)(44.405mm,3.324mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5138.515mil|Location2.X=5193.759mil|Location1.Y=2706.491mil|Location2.Y=2769.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5138.515mil|Location2.X=5193.759mil|Location1.Y=2706.491mil|Location2.Y=2769.609mil|Absolute=True">Pad Rok3-2(43.505mm,2.724mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5197.633mil|Location2.X=5205.507mil|Location1.Y=2710.491mil|Location2.Y=2765.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5197.633mil|Location2.X=5205.507mil|Location1.Y=2710.491mil|Location2.Y=2765.609mil|Absolute=True">Track (44.405mm,2.124mm)(44.405mm,3.324mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5209.381mil|Location2.X=5264.625mil|Location1.Y=2706.491mil|Location2.Y=2769.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5209.381mil|Location2.X=5264.625mil|Location1.Y=2706.491mil|Location2.Y=2769.609mil|Absolute=True">Pad Rok3-1(45.305mm,2.724mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5186.643mil|Location2.X=5194.517mil|Location1.Y=2955.741mil|Location2.Y=3010.859mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5186.643mil|Location2.X=5194.517mil|Location1.Y=2955.741mil|Location2.Y=3010.859mil|Absolute=True">Track (44.126mm,8.354mm)(44.126mm,9.553mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5127.525mil|Location2.X=5182.769mil|Location1.Y=2951.741mil|Location2.Y=3014.859mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5127.525mil|Location2.X=5182.769mil|Location1.Y=2951.741mil|Location2.Y=3014.859mil|Absolute=True">Pad Rok2-2(43.226mm,8.953mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5186.643mil|Location2.X=5194.517mil|Location1.Y=2955.741mil|Location2.Y=3010.859mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5186.643mil|Location2.X=5194.517mil|Location1.Y=2955.741mil|Location2.Y=3010.859mil|Absolute=True">Track (44.126mm,8.354mm)(44.126mm,9.553mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5198.391mil|Location2.X=5253.635mil|Location1.Y=2951.741mil|Location2.Y=3014.859mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5198.391mil|Location2.X=5253.635mil|Location1.Y=2951.741mil|Location2.Y=3014.859mil|Absolute=True">Pad Rok2-1(45.026mm,8.953mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5466.811mil|Location2.X=5521.929mil|Location1.Y=2946.403mil|Location2.Y=2954.277mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5466.811mil|Location2.X=5521.929mil|Location1.Y=2946.403mil|Location2.Y=2954.277mil|Absolute=True">Track (51.242mm,8.116mm)(52.442mm,8.116mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5462.811mil|Location2.X=5525.929mil|Location1.Y=2962.088mil|Location2.Y=3009.458mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5462.811mil|Location2.X=5525.929mil|Location1.Y=2962.088mil|Location2.Y=3009.458mil|Absolute=True">Pad Rok1-2(51.842mm,9.016mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5466.811mil|Location2.X=5521.929mil|Location1.Y=2946.403mil|Location2.Y=2954.277mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5466.811mil|Location2.X=5521.929mil|Location1.Y=2946.403mil|Location2.Y=2954.277mil|Absolute=True">Track (51.242mm,8.116mm)(52.442mm,8.116mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5462.811mil|Location2.X=5525.929mil|Location1.Y=2891.222mil|Location2.Y=2938.592mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5462.811mil|Location2.X=5525.929mil|Location1.Y=2891.222mil|Location2.Y=2938.592mil|Absolute=True">Pad Rok1-1(51.842mm,7.216mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4470.1mil|Location2.X=4477.974mil|Location1.Y=3347.046mil|Location2.Y=3373.62mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4470.1mil|Location2.X=4477.974mil|Location1.Y=3347.046mil|Location2.Y=3373.62mil|Absolute=True">Track (25.926mm,18.293mm)(25.926mm,18.768mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True">Pad BQ25504-1(26.151mm,17.793mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4470.1mil|Location2.X=4477.974mil|Location1.Y=3229.92mil|Location2.Y=3256.494mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4470.1mil|Location2.X=4477.974mil|Location1.Y=3229.92mil|Location2.Y=3256.494mil|Absolute=True">Track (25.926mm,15.318mm)(25.926mm,15.793mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True">Pad BQ25504-4(26.151mm,16.293mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4470.1mil|Location2.X=4496.674mil|Location1.Y=3229.92mil|Location2.Y=3237.794mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4470.1mil|Location2.X=4496.674mil|Location1.Y=3229.92mil|Location2.Y=3237.794mil|Absolute=True">Track (25.926mm,15.318mm)(26.401mm,15.318mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-5(26.901mm,15.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4587.226mil|Location2.X=4613.8mil|Location1.Y=3229.92mil|Location2.Y=3237.794mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4587.226mil|Location2.X=4613.8mil|Location1.Y=3229.92mil|Location2.Y=3237.794mil|Absolute=True">Track (28.901mm,15.318mm)(29.376mm,15.318mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-8(28.401mm,15.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4605.926mil|Location2.X=4613.8mil|Location1.Y=3229.92mil|Location2.Y=3256.494mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4605.926mil|Location2.X=4613.8mil|Location1.Y=3229.92mil|Location2.Y=3256.494mil|Absolute=True">Track (29.376mm,15.318mm)(29.376mm,15.793mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True">Pad BQ25504-9(29.151mm,16.293mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4605.926mil|Location2.X=4613.8mil|Location1.Y=3347.046mil|Location2.Y=3373.62mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4605.926mil|Location2.X=4613.8mil|Location1.Y=3347.046mil|Location2.Y=3373.62mil|Absolute=True">Track (29.376mm,18.293mm)(29.376mm,18.768mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True">Pad BQ25504-12(29.151mm,17.793mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4587.226mil|Location2.X=4613.8mil|Location1.Y=3365.746mil|Location2.Y=3373.62mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4587.226mil|Location2.X=4613.8mil|Location1.Y=3365.746mil|Location2.Y=3373.62mil|Absolute=True">Track (28.901mm,18.768mm)(29.376mm,18.768mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-13(28.401mm,18.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4470.1mil|Location2.X=4496.674mil|Location1.Y=3365.746mil|Location2.Y=3373.62mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4470.1mil|Location2.X=4496.674mil|Location1.Y=3365.746mil|Location2.Y=3373.62mil|Absolute=True">Track (25.926mm,18.768mm)(26.401mm,18.768mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-16(26.901mm,18.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4793.796mil|Location2.X=4801.67mil|Location1.Y=3643.604mil|Location2.Y=3655.415mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4793.796mil|Location2.X=4801.67mil|Location1.Y=3643.604mil|Location2.Y=3655.415mil|Absolute=True">Track (34.148mm,25.825mm)(34.148mm,25.925mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4762.237mil|Location2.X=4789.922mil|Location1.Y=3639.604mil|Location2.Y=3659.415mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4762.237mil|Location2.X=4789.922mil|Location1.Y=3639.604mil|Location2.Y=3659.415mil|Absolute=True">Pad Lbst-1(33.598mm,25.875mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5702.712mil|Location2.X=5730.271mil|Location1.Y=3638.517mil|Location2.Y=3662.139mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5702.712mil|Location2.X=5730.271mil|Location1.Y=3638.517mil|Location2.Y=3662.139mil|Absolute=True">Track (57.234mm,25.696mm)(57.734mm,26.096mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5635.72mil|Location2.X=5702.775mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5635.72mil|Location2.X=5702.775mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True">Pad D1-2(56.284mm,26.846mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5702.712mil|Location2.X=5730.271mil|Location1.Y=3713.321mil|Location2.Y=3736.943mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5702.712mil|Location2.X=5730.271mil|Location1.Y=3713.321mil|Location2.Y=3736.943mil|Absolute=True">Track (57.234mm,27.996mm)(57.734mm,27.596mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5635.72mil|Location2.X=5702.775mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5635.72mil|Location2.X=5702.775mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True">Pad D1-2(56.284mm,26.846mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5635.783mil|Location2.X=5710.586mil|Location1.Y=3638.517mil|Location2.Y=3646.391mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5635.783mil|Location2.X=5710.586mil|Location1.Y=3638.517mil|Location2.Y=3646.391mil|Absolute=True">Track (55.534mm,25.696mm)(57.234mm,25.696mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5635.72mil|Location2.X=5702.775mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5635.72mil|Location2.X=5702.775mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True">Pad D1-2(56.284mm,26.846mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5635.783mil|Location2.X=5710.586mil|Location1.Y=3729.069mil|Location2.Y=3736.943mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5635.783mil|Location2.X=5710.586mil|Location1.Y=3729.069mil|Location2.Y=3736.943mil|Absolute=True">Track (55.534mm,27.996mm)(57.234mm,27.996mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5635.72mil|Location2.X=5702.775mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5635.72mil|Location2.X=5702.775mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True">Pad D1-2(56.284mm,26.846mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5482.24mil|Location2.X=5490.114mil|Location1.Y=3638.517mil|Location2.Y=3736.943mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5482.24mil|Location2.X=5490.114mil|Location1.Y=3638.517mil|Location2.Y=3736.943mil|Absolute=True">Track (51.634mm,25.696mm)(51.634mm,27.996mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5497.925mil|Location2.X=5564.98mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5497.925mil|Location2.X=5564.98mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True">Pad D1-1(52.784mm,26.846mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5482.24mil|Location2.X=5564.917mil|Location1.Y=3638.517mil|Location2.Y=3646.391mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5482.24mil|Location2.X=5564.917mil|Location1.Y=3638.517mil|Location2.Y=3646.391mil|Absolute=True">Track (51.634mm,25.696mm)(53.534mm,25.696mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5497.925mil|Location2.X=5564.98mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5497.925mil|Location2.X=5564.98mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True">Pad D1-1(52.784mm,26.846mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5482.24mil|Location2.X=5564.917mil|Location1.Y=3729.069mil|Location2.Y=3736.943mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5482.24mil|Location2.X=5564.917mil|Location1.Y=3729.069mil|Location2.Y=3736.943mil|Absolute=True">Track (51.634mm,27.996mm)(53.534mm,27.996mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5497.925mil|Location2.X=5564.98mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5497.925mil|Location2.X=5564.98mil|Location1.Y=3654.202mil|Location2.Y=3721.258mil|Absolute=True">Pad D1-1(52.784mm,26.846mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4021.62mil|Location2.X=4261.549mil|Location1.Y=3051.33mil|Location2.Y=3131.311mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4021.62mil|Location2.X=4261.549mil|Location1.Y=3051.33mil|Location2.Y=3131.311mil|Absolute=True">Text "Roc2" (14.689mm,10.935mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4261.9mil|Location2.X=4329.9mil|Location1.Y=3058.23mil|Location2.Y=3126.23mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4261.9mil|Location2.X=4329.9mil|Location1.Y=3058.23mil|Location2.Y=3126.23mil|Absolute=True">Pad Free-10(21.401mm,11.72mm)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4732.97mil|Location2.X=4952.905mil|Location1.Y=3681.76mil|Location2.Y=3761.741mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4732.97mil|Location2.X=4952.905mil|Location1.Y=3681.76mil|Location2.Y=3761.741mil|Absolute=True">Text "Lbst" (32.757mm,26.948mm)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4797.82mil|Location2.X=4865.82mil|Location1.Y=3706.33mil|Location2.Y=3774.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4797.82mil|Location2.X=4865.82mil|Location1.Y=3706.33mil|Location2.Y=3774.33mil|Absolute=True">Pad Free-11(35.014mm,28.182mm)  Multi-Layer</acronym></a></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br><a name="IDNN3NYE2UXQBEKUABVQRYYWXRIF4M0CDHQK2RNXLP1GZOERYTMHJG"><table>
+<tr>
+<th style="text-align : left" colspan="2" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-16(26.901mm,18.543mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True">Pad BQ25504-1(26.151mm,17.793mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3303.675mil|Location2.Y=3319.55mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3303.675mil|Location2.Y=3319.55mil|Absolute=True">Pad BQ25504-2(26.151mm,17.293mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True">Pad BQ25504-1(26.151mm,17.793mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True">Pad BQ25504-1(26.151mm,17.793mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3283.99mil|Location2.Y=3299.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3283.99mil|Location2.Y=3299.865mil|Absolute=True">Pad BQ25504-3(26.151mm,16.793mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3303.675mil|Location2.Y=3319.55mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3303.675mil|Location2.Y=3319.55mil|Absolute=True">Pad BQ25504-2(26.151mm,17.293mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3303.675mil|Location2.Y=3319.55mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3303.675mil|Location2.Y=3319.55mil|Absolute=True">Pad BQ25504-2(26.151mm,17.293mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True">Pad BQ25504-4(26.151mm,16.293mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3283.99mil|Location2.Y=3299.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3283.99mil|Location2.Y=3299.865mil|Absolute=True">Pad BQ25504-3(26.151mm,16.793mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3283.99mil|Location2.Y=3299.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3283.99mil|Location2.Y=3299.865mil|Absolute=True">Pad BQ25504-3(26.151mm,16.793mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-5(26.901mm,15.543mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True">Pad BQ25504-4(26.151mm,16.293mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4463.147mil|Location2.X=4502.643mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True">Pad BQ25504-4(26.151mm,16.293mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4524.171mil|Location2.X=4540.044mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4524.171mil|Location2.X=4540.044mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-6(27.401mm,15.543mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-5(26.901mm,15.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-5(26.901mm,15.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4543.855mil|Location2.X=4559.73mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4543.855mil|Location2.X=4559.73mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-7(27.901mm,15.543mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4524.171mil|Location2.X=4540.044mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4524.171mil|Location2.X=4540.044mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-6(27.401mm,15.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4524.171mil|Location2.X=4540.044mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4524.171mil|Location2.X=4540.044mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-6(27.401mm,15.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-8(28.401mm,15.543mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4543.855mil|Location2.X=4559.73mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4543.855mil|Location2.X=4559.73mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-7(27.901mm,15.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4543.855mil|Location2.X=4559.73mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4543.855mil|Location2.X=4559.73mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-7(27.901mm,15.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True">Pad BQ25504-9(29.151mm,16.293mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-8(28.401mm,15.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3222.967mil|Location2.Y=3262.463mil|Absolute=True">Pad BQ25504-8(28.401mm,15.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3283.99mil|Location2.Y=3299.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3283.99mil|Location2.Y=3299.865mil|Absolute=True">Pad BQ25504-10(29.151mm,16.793mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True">Pad BQ25504-9(29.151mm,16.293mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3264.305mil|Location2.Y=3280.179mil|Absolute=True">Pad BQ25504-9(29.151mm,16.293mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3303.675mil|Location2.Y=3319.55mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3303.675mil|Location2.Y=3319.55mil|Absolute=True">Pad BQ25504-11(29.151mm,17.293mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3283.99mil|Location2.Y=3299.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3283.99mil|Location2.Y=3299.865mil|Absolute=True">Pad BQ25504-10(29.151mm,16.793mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3283.99mil|Location2.Y=3299.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3283.99mil|Location2.Y=3299.865mil|Absolute=True">Pad BQ25504-10(29.151mm,16.793mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True">Pad BQ25504-12(29.151mm,17.793mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3303.675mil|Location2.Y=3319.55mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3303.675mil|Location2.Y=3319.55mil|Absolute=True">Pad BQ25504-11(29.151mm,17.293mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3303.675mil|Location2.Y=3319.55mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3303.675mil|Location2.Y=3319.55mil|Absolute=True">Pad BQ25504-11(29.151mm,17.293mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-13(28.401mm,18.543mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True">Pad BQ25504-12(29.151mm,17.793mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4581.257mil|Location2.X=4620.753mil|Location1.Y=3323.36mil|Location2.Y=3339.235mil|Absolute=True">Pad BQ25504-12(29.151mm,17.793mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4543.855mil|Location2.X=4559.73mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4543.855mil|Location2.X=4559.73mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-14(27.901mm,18.543mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-13(28.401mm,18.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4563.541mil|Location2.X=4579.415mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-13(28.401mm,18.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4524.171mil|Location2.X=4540.044mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4524.171mil|Location2.X=4540.044mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-15(27.401mm,18.543mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4543.855mil|Location2.X=4559.73mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4543.855mil|Location2.X=4559.73mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-14(27.901mm,18.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4543.855mil|Location2.X=4559.73mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4543.855mil|Location2.X=4559.73mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-14(27.901mm,18.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-16(26.901mm,18.543mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4524.171mil|Location2.X=4540.044mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4524.171mil|Location2.X=4540.044mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-15(27.401mm,18.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4524.171mil|Location2.X=4540.044mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4524.171mil|Location2.X=4540.044mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-15(27.401mm,18.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4505.273mil|Location2.X=4578.627mil|Location1.Y=3265.093mil|Location2.Y=3338.447mil|Absolute=True">Pad BQ25504-17(27.651mm,17.043mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.485mil|Location2.X=4520.359mil|Location1.Y=3341.077mil|Location2.Y=3380.573mil|Absolute=True">Pad BQ25504-16(26.901mm,18.543mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5003.281mil|Location2.X=5066.399mil|Location1.Y=3707.624mil|Location2.Y=3758.931mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5003.281mil|Location2.X=5066.399mil|Location1.Y=3707.624mil|Location2.Y=3758.931mil|Absolute=True">Pad Cbyp-2(40.17mm,28.003mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5003.281mil|Location2.X=5066.399mil|Location1.Y=3648.569mil|Location2.Y=3699.876mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5003.281mil|Location2.X=5066.399mil|Location1.Y=3648.569mil|Location2.Y=3699.876mil|Absolute=True">Pad Cbyp-1(40.17mm,26.503mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5247.251mil|Location2.X=5310.369mil|Location1.Y=3712.324mil|Location2.Y=3763.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5247.251mil|Location2.X=5310.369mil|Location1.Y=3712.324mil|Location2.Y=3763.631mil|Absolute=True">Pad Cstor-2(46.367mm,28.122mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5247.251mil|Location2.X=5310.369mil|Location1.Y=3653.269mil|Location2.Y=3704.576mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5247.251mil|Location2.X=5310.369mil|Location1.Y=3653.269mil|Location2.Y=3704.576mil|Absolute=True">Pad Cstor-1(46.367mm,26.622mm)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4359.011mil|Location2.X=4422.129mil|Location1.Y=3642.209mil|Location2.Y=3693.516mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4359.011mil|Location2.X=4422.129mil|Location1.Y=3642.209mil|Location2.Y=3693.516mil|Absolute=True">Pad Cref-2(23.806mm,26.341mm)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4359.011mil|Location2.X=4422.129mil|Location1.Y=3701.264mil|Location2.Y=3752.571mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Users\Public\Documents\Altium\AD13\Library\Wendy\Energy Harvesting 1.0.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4359.011mil|Location2.X=4422.129mil|Location1.Y=3701.264mil|Location2.Y=3752.571mil|Absolute=True">Pad Cref-1(23.806mm,27.841mm)  Top Layer</acronym></a></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br></body>
+</html>

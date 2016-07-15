@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=NetBridge_3 Pin=Bridge-3
+Removed Pin From Net: NetName=NetBridge_3 Pin=Chrv-2
+Removed Pin From Net: NetName=NetBridge_3 Pin=Lbst-1
+Change Net Name : Old Net Name=NetBridge_3 New Net Name=NetRoc1_1
+Added Pin To Net: NetName=NetBridge_3 Pin=Bridge-3
+Added Pin To Net: NetName=NetBridge_3 Pin=Chrv-2
+Added Pin To Net: NetName=NetBridge_3 Pin=Lbst-1
+Added Pin To Net: NetName=NetBridge_3 Pin=U1-2
+Added Net: Name=NetBridge_3
+Added Room: Name=Energyharvesting

@@ -1,0 +1,5 @@
+Change Component Designator: OldDesignator=* NewDesignator=Bridge
+Change Component Designator: OldDesignator=U? NewDesignator=U1
+Change Net Name : Old Net Name=Net*_1 New Net Name=NetBridge_1
+Change Net Name : Old Net Name=Net*_2 New Net Name=NetBridge_2
+Change Net Name : Old Net Name=Net*_3 New Net Name=NetBridge_3

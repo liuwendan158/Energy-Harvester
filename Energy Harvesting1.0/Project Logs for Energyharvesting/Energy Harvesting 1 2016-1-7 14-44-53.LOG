@@ -1,0 +1,64 @@
+Added Component: Designator=Bridge(MB6S)
+Added Component: Designator=Cbyp(C0805)
+Added Component: Designator=Chrv(C0805)
+Added Component: Designator=Cref(C0805)
+Added Component: Designator=Cstor(C0805)
+Added Component: Designator=D1(3.2X1.6X1.1)
+Added Component: Designator=Lbst(0603)
+Added Component: Designator=P1(HDR1X2H)
+Added Component: Designator=P2(HDR1X3)
+Added Component: Designator=Roc1(6-0805_N)
+Added Component: Designator=Roc2(6-0805_N)
+Added Component: Designator=Rok1(6-0805_N)
+Added Component: Designator=Rok2(6-0805_N)
+Added Component: Designator=Rok3(6-0805_N)
+Added Component: Designator=Rov1(6-0805_N)
+Added Component: Designator=Rov2(6-0805_N)
+Added Component: Designator=Ruv1(6-0805_N)
+Added Component: Designator=Ruv2(6-0805_N)
+Added Pin To Net: NetName=NetCbyp_1 Pin=Cbyp-1
+Added Pin To Net: NetName=NetCbyp_2 Pin=Cbyp-2
+Added Pin To Net: NetName=GND Pin=Chrv-1
+Added Pin To Net: NetName=NetChrv_2 Pin=Chrv-2
+Added Pin To Net: NetName=GND Pin=Cref-1
+Added Pin To Net: NetName=NetCbyp_1 Pin=Cstor-1
+Added Pin To Net: NetName=NetCbyp_2 Pin=Cstor-2
+Added Pin To Net: NetName=NetCbyp_2 Pin=D1-1
+Added Pin To Net: NetName=NetD1_2 Pin=D1-2
+Added Pin To Net: NetName=NetChrv_2 Pin=Lbst-1
+Added Pin To Net: NetName=NetD1_2 Pin=P2-1
+Added Pin To Net: NetName=NetChrv_2 Pin=Roc1-1
+Added Pin To Net: NetName=GND Pin=Roc1-2
+Added Pin To Net: NetName=NetChrv_2 Pin=Roc2-2
+Added Pin To Net: NetName=GND Pin=Rok1-1
+Added Pin To Net: NetName=NetRok1_2 Pin=Rok1-2
+Added Pin To Net: NetName=NetRok1_2 Pin=Rok2-1
+Added Pin To Net: NetName=NetRok2_2 Pin=Rok2-2
+Added Pin To Net: NetName=NetRok2_2 Pin=Rok3-1
+Added Pin To Net: NetName=NetRok3_2 Pin=Rok3-2
+Added Pin To Net: NetName=NetRov1_1 Pin=Rov1-1
+Added Pin To Net: NetName=GND Pin=Rov1-2
+Added Pin To Net: NetName=NetRok3_2 Pin=Rov2-1
+Added Pin To Net: NetName=NetRov1_1 Pin=Rov2-2
+Added Pin To Net: NetName=NetRuv1_1 Pin=Ruv1-1
+Added Pin To Net: NetName=GND Pin=Ruv1-2
+Added Pin To Net: NetName=NetRok3_2 Pin=Ruv2-1
+Added Pin To Net: NetName=NetRuv1_1 Pin=Ruv2-2
+Added Member To Class: ClassName=Energyharvesting Member=Component Bridge Bridge MB6s
+Added Member To Class: ClassName=Energyharvesting Member=Component Cbyp Cap Pol3
+Added Member To Class: ClassName=Energyharvesting Member=Component Chrv Cap Pol3
+Added Member To Class: ClassName=Energyharvesting Member=Component Cref Cap Pol3
+Added Member To Class: ClassName=Energyharvesting Member=Component Cstor Cap Pol3
+Added Member To Class: ClassName=Energyharvesting Member=Component D1 LED2
+Added Member To Class: ClassName=Energyharvesting Member=Component Lbst Inductor
+Added Member To Class: ClassName=Energyharvesting Member=Component P1 Header 2H
+Added Member To Class: ClassName=Energyharvesting Member=Component P2 Header 3
+Added Member To Class: ClassName=Energyharvesting Member=Component Roc1 Res Thermal
+Added Member To Class: ClassName=Energyharvesting Member=Component Roc2 Res Thermal
+Added Member To Class: ClassName=Energyharvesting Member=Component Rok1 Res Thermal
+Added Member To Class: ClassName=Energyharvesting Member=Component Rok2 Res Thermal
+Added Member To Class: ClassName=Energyharvesting Member=Component Rok3 Res Thermal
+Added Member To Class: ClassName=Energyharvesting Member=Component Rov1 Res Thermal
+Added Member To Class: ClassName=Energyharvesting Member=Component Rov2 Res Thermal
+Added Member To Class: ClassName=Energyharvesting Member=Component Ruv1 Res Thermal
+Added Member To Class: ClassName=Energyharvesting Member=Component Ruv2 Res Thermal

@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=NetD1_2 Pin=P?-2
+Change Component Designator: OldDesignator=P? NewDesignator=P2
+Added Pin To Net: NetName=GND Pin=P2-1
+Added Pin To Net: NetName=NetD1_2 Pin=P2-2
+Added Pin To Net: NetName=NetBQ25504_15 Pin=P2-3
+Added Pin To Net: NetName=NetBQ25504_11 Pin=P2-4
+Added Pin To Net: NetName=NetBridge_1 Pin=P?-2
+Added Member To Class: ClassName=Energyharvesting Member=Component P? Header 2
+Added Room: Name=Energyharvesting

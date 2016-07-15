@@ -1,0 +1,13 @@
+Added Component: Designator=P2(HDR1X4)
+Added Pin To Net: NetName=VBAT_OK Pin=Dstor-1
+Added Pin To Net: NetName=AVSS Pin=Dstor-2
+Added Pin To Net: NetName=VBAT Pin=P2-1
+Added Pin To Net: NetName=VSTOR Pin=P2-2
+Added Pin To Net: NetName=VBAT_OK Pin=P2-3
+Added Pin To Net: NetName=AVSS Pin=P2-4
+Added Pin To Net: NetName=INPUT Pin=U1-2
+Added Pin To Net: NetName=VSTOR Pin=U1-3
+Added Pin To Net: NetName=AVSS Pin=U1-4
+Added Pin To Net: NetName=AVSS Pin=U1-5
+Added Member To Class: ClassName=piezo energy harvesting 4.0 Member=Component P2 Header 4
+Added Room: Name=piezo energy harvesting 4.0

@@ -1,0 +1,76 @@
+Change Component DesignItemId : Designator=Cbyp Old DesignItemId= New DesignItemId=Cap Pol3
+Change Component DesignItemId : Designator=Cref Old DesignItemId= New DesignItemId=Cap Pol3
+Change Component DesignItemId : Designator=Cstor Old DesignItemId= New DesignItemId=Cap Pol3
+Change Component DesignItemId : Designator=Lbst Old DesignItemId= New DesignItemId=Inductor
+Change Component DesignItemId : Designator=Roc1 Old DesignItemId= New DesignItemId=Res Thermal
+Change Component DesignItemId : Designator=Roc2 Old DesignItemId= New DesignItemId=Res Thermal
+Change Component DesignItemId : Designator=Rok1 Old DesignItemId= New DesignItemId=Res Thermal
+Change Component DesignItemId : Designator=Rok2 Old DesignItemId= New DesignItemId=Res Thermal
+Change Component DesignItemId : Designator=Rok3 Old DesignItemId= New DesignItemId=Res Thermal
+Change Component DesignItemId : Designator=Rov1 Old DesignItemId= New DesignItemId=Res Thermal
+Change Component DesignItemId : Designator=Rov2 Old DesignItemId= New DesignItemId=Res Thermal
+Change Component DesignItemId : Designator=Ruv1 Old DesignItemId= New DesignItemId=Res Thermal
+Change Component DesignItemId : Designator=Ruv2 Old DesignItemId= New DesignItemId=Res Thermal
+Change Component DesignItemId : Designator=BQ25504 Old DesignItemId= New DesignItemId=Sheet1
+Change Component Footprint: Designator=Lbst Old Footprint=6-0805_N New Footprint=0603
+Change Component Footprint: Designator=Cbyp Old Footprint=6-0805_N New Footprint=C0805
+Change Component Footprint: Designator=Cref Old Footprint=6-0805_N New Footprint=C0805
+Change Component Footprint: Designator=Cstor Old Footprint=6-0805_N New Footprint=C0805
+Change Component Comment : Designator=Cbyp Old Comment= New Comment=Cap Pol3
+Change Component Comment : Designator=Cref Old Comment= New Comment=Cap Pol3
+Change Component Comment : Designator=Cstor Old Comment= New Comment=Cap Pol3
+Change Component Comment : Designator=Lbst Old Comment= New Comment=Inductor
+Change Component Comment : Designator=Roc1 Old Comment= New Comment=Res Thermal
+Change Component Comment : Designator=Roc2 Old Comment= New Comment=Res Thermal
+Change Component Comment : Designator=Rok1 Old Comment= New Comment=Res Thermal
+Change Component Comment : Designator=Rok2 Old Comment= New Comment=Res Thermal
+Change Component Comment : Designator=Rok3 Old Comment= New Comment=Res Thermal
+Change Component Comment : Designator=Rov1 Old Comment= New Comment=Res Thermal
+Change Component Comment : Designator=Rov2 Old Comment= New Comment=Res Thermal
+Change Component Comment : Designator=Ruv1 Old Comment= New Comment=Res Thermal
+Change Component Comment : Designator=Ruv2 Old Comment= New Comment=Res Thermal
+Change Component Description : Designator=Roc1 Old Description= New Description=Thermistor
+Change Component Description : Designator=Roc2 Old Description= New Description=Thermistor
+Change Component Description : Designator=Rok1 Old Description= New Description=Thermistor
+Change Component Description : Designator=Rok2 Old Description= New Description=Thermistor
+Change Component Description : Designator=Rok3 Old Description= New Description=Thermistor
+Change Component Description : Designator=Rov1 Old Description= New Description=Thermistor
+Change Component Description : Designator=Rov2 Old Description= New Description=Thermistor
+Change Component Description : Designator=Ruv1 Old Description= New Description=Thermistor
+Change Component Description : Designator=Ruv2 Old Description= New Description=Thermistor
+Change Component Library : Designator=Roc1 Old Library= New Library=Miscellaneous Devices.IntLib
+Change Component Library : Designator=Roc2 Old Library= New Library=Miscellaneous Devices.IntLib
+Change Component Library : Designator=Rok1 Old Library= New Library=Miscellaneous Devices.IntLib
+Change Component Library : Designator=Rok2 Old Library= New Library=Miscellaneous Devices.IntLib
+Change Component Library : Designator=Rok3 Old Library= New Library=Miscellaneous Devices.IntLib
+Change Component Library : Designator=Rov1 Old Library= New Library=Miscellaneous Devices.IntLib
+Change Component Library : Designator=Rov2 Old Library= New Library=Miscellaneous Devices.IntLib
+Change Component Library : Designator=Ruv1 Old Library= New Library=Miscellaneous Devices.IntLib
+Change Component Library : Designator=Ruv2 Old Library= New Library=Miscellaneous Devices.IntLib
+Change Component Library : Designator=BQ25504 Old Library= New Library=Schlib1.SchLib
+Added Component: Designator=*(MB6S)
+Added Component: Designator=Chrv(C0805)
+Added Component: Designator=D1(3.2X1.6X1.1)
+Added Component: Designator=P1(HDR1X2H)
+Added Component: Designator=P2(HDR1X3)
+Added Component: Designator=RT?(6-0805_N)
+Added Component: Designator=RT?(6-0805_N)
+Added Component: Designator=RT?(6-0805_N)
+Added Pin To Net: NetName=GND Pin=Chrv-1
+Added Pin To Net: NetName=GND Pin=Cref-1
+Added Net: Name=GND
+Added Pin To Net: NetName=NetCbyp_1 Pin=Cbyp-1
+Added Pin To Net: NetName=NetCbyp_1 Pin=Cstor-1
+Added Net: Name=NetCbyp_1
+Added Pin To Net: NetName=NetCbyp_2 Pin=Cbyp-2
+Added Pin To Net: NetName=NetCbyp_2 Pin=Cstor-2
+Added Pin To Net: NetName=NetCbyp_2 Pin=D1-1
+Added Net: Name=NetCbyp_2
+Added Pin To Net: NetName=NetChrv_2 Pin=Chrv-2
+Added Pin To Net: NetName=NetChrv_2 Pin=Lbst-1
+Added Net: Name=NetChrv_2
+Added Pin To Net: NetName=NetD1_2 Pin=D1-2
+Added Pin To Net: NetName=NetD1_2 Pin=P2-1
+Added Net: Name=NetD1_2
+Added Class: Name=Energyharvesting
+Added Room: Name=Energyharvesting

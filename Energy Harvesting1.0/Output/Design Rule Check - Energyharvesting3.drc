@@ -1,0 +1,70 @@
+Protel Design System Design Rule Check
+PCB File : D:\Users\Public\Documents\Altium\AD13\Energy Harvester\Energyharvesting3.0.PcbDoc
+Date     : 2016/1/11
+Time     : 20:01:48
+
+Processing Rule : Net Antennae (Tolerance=0mil) (All)
+Rule Violations :0
+
+Processing Rule : Silk to Silk (Clearance=10mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Silk To Solder Mask (Clearance=6mil) (IsPad),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=10mil) (All),(All)
+   Violation between Pad Chrv-2(2685mil,3705.472mil)  Top Layer and 
+                     Pad Chrv-1(2685mil,3764.528mil)  Top Layer
+   Violation between Pad BQ25504-2(2995.945mil,3559.843mil)  Top Layer and 
+                     Pad BQ25504-1(2995.945mil,3579.528mil)  Top Layer
+   Violation between Pad BQ25504-3(2995.945mil,3540.157mil)  Top Layer and 
+                     Pad BQ25504-2(2995.945mil,3559.843mil)  Top Layer
+   Violation between Pad BQ25504-4(2995.945mil,3520.472mil)  Top Layer and 
+                     Pad BQ25504-3(2995.945mil,3540.157mil)  Top Layer
+   Violation between Pad BQ25504-6(3045.157mil,3490.945mil)  Top Layer and 
+                     Pad BQ25504-5(3025.472mil,3490.945mil)  Top Layer
+   Violation between Pad BQ25504-7(3064.843mil,3490.945mil)  Top Layer and 
+                     Pad BQ25504-6(3045.157mil,3490.945mil)  Top Layer
+   Violation between Pad BQ25504-8(3084.528mil,3490.945mil)  Top Layer and 
+                     Pad BQ25504-7(3064.843mil,3490.945mil)  Top Layer
+   Violation between Pad BQ25504-10(3114.055mil,3540.157mil)  Top Layer and 
+                     Pad BQ25504-9(3114.055mil,3520.472mil)  Top Layer
+   Violation between Pad BQ25504-11(3114.055mil,3559.843mil)  Top Layer and 
+                     Pad BQ25504-10(3114.055mil,3540.157mil)  Top Layer
+   Violation between Pad BQ25504-12(3114.055mil,3579.528mil)  Top Layer and 
+                     Pad BQ25504-11(3114.055mil,3559.843mil)  Top Layer
+   Violation between Pad BQ25504-14(3064.843mil,3609.055mil)  Top Layer and 
+                     Pad BQ25504-13(3084.528mil,3609.055mil)  Top Layer
+   Violation between Pad BQ25504-15(3045.157mil,3609.055mil)  Top Layer and 
+                     Pad BQ25504-14(3064.843mil,3609.055mil)  Top Layer
+   Violation between Pad BQ25504-16(3025.472mil,3609.055mil)  Top Layer and 
+                     Pad BQ25504-15(3045.157mil,3609.055mil)  Top Layer
+Rule Violations :13
+
+Processing Rule : Hole To Hole Clearance (Gap=10mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=1mil) (Max=100mil) (All)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=10mil) (Max=10mil) (Preferred=10mil) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=6mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+
+Violations Detected : 13
+Time Elapsed        : 00:00:01

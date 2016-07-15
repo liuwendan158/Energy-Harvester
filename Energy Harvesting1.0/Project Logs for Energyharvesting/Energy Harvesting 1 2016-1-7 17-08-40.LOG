@@ -1,0 +1,7 @@
+Added Pin To Net: NetName=NetRoc1_1 Pin=Bridge-3
+Added Pin To Net: NetName=NetRoc1_1 Pin=Chrv-2
+Added Pin To Net: NetName=NetRoc1_1 Pin=Lbst-1
+Change Net Name : Old Net Name=NetRoc1_1 New Net Name=NetBridge_3
+Added Pin To Net: NetName=NetRoc2_1 Pin=Roc2-1
+Added Pin To Net: NetName=NetRoc2_1 Pin=U1-2
+Added Net: Name=NetRoc2_1
