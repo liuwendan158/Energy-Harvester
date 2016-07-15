@@ -1,0 +1,28 @@
+Added Component: Designator=B1(MB6S)
+Added Component: Designator=B2(MB6S)
+Added Component: Designator=B3(MB6S)
+Added Component: Designator=B4(MB6S)
+Added Component: Designator=B5(MB6S)
+Added Pin To Net: NetName=1 Pin=B1-1
+Added Pin To Net: NetName=2 Pin=B1-2
+Added Pin To Net: NetName=INPUT Pin=B1-3
+Added Pin To Net: NetName=GND Pin=B1-4
+Added Pin To Net: NetName=3 Pin=B2-1
+Added Pin To Net: NetName=4 Pin=B2-2
+Added Pin To Net: NetName=INPUT Pin=B2-3
+Added Pin To Net: NetName=GND Pin=B2-4
+Added Pin To Net: NetName=5 Pin=B3-1
+Added Pin To Net: NetName=6 Pin=B3-2
+Added Pin To Net: NetName=INPUT Pin=B3-3
+Added Pin To Net: NetName=GND Pin=B3-4
+Added Pin To Net: NetName=7 Pin=B4-1
+Added Pin To Net: NetName=8 Pin=B4-2
+Added Pin To Net: NetName=INPUT Pin=B4-3
+Added Pin To Net: NetName=GND Pin=B4-4
+Added Pin To Net: NetName=GND Pin=B5-4
+Added Member To Class: ClassName=Led Lighting Member=Component B1 
+Added Member To Class: ClassName=Led Lighting Member=Component B2 Bridge MB6s 2
+Added Member To Class: ClassName=Led Lighting Member=Component B3 Bridge MB6s 3
+Added Member To Class: ClassName=Led Lighting Member=Component B4 Bridge MB6s 4
+Added Member To Class: ClassName=Led Lighting Member=Component B5 Bridge MB6s 5
+Added Room: Name=Led Lighting

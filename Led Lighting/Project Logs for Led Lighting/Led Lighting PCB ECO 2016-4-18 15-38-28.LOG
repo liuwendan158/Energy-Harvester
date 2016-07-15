@@ -1,0 +1,94 @@
+Added Component: Designator=B1(MB6S)
+Added Component: Designator=B2(MB6S)
+Added Component: Designator=B3(MB6S)
+Added Component: Designator=B4(MB6S)
+Added Component: Designator=B5(MB6S)
+Added Component: Designator=B6(MB6S)
+Added Component: Designator=B7(MB6S)
+Added Component: Designator=B8(MB6S)
+Added Component: Designator=B9(MB6S)
+Added Component: Designator=B10(MB6S)
+Added Component: Designator=C1(C0805)
+Added Component: Designator=D1(3.5X2.8X1.9)
+Added Component: Designator=J1(PIN22)
+Added Pin To Net: NetName=1 Pin=B1-1
+Added Pin To Net: NetName=2 Pin=B1-2
+Added Pin To Net: NetName=INPUT Pin=B1-3
+Added Pin To Net: NetName=GND Pin=B1-4
+Added Pin To Net: NetName=3 Pin=B2-1
+Added Pin To Net: NetName=4 Pin=B2-2
+Added Pin To Net: NetName=INPUT Pin=B2-3
+Added Pin To Net: NetName=GND Pin=B2-4
+Added Pin To Net: NetName=5 Pin=B3-1
+Added Pin To Net: NetName=6 Pin=B3-2
+Added Pin To Net: NetName=INPUT Pin=B3-3
+Added Pin To Net: NetName=GND Pin=B3-4
+Added Pin To Net: NetName=7 Pin=B4-1
+Added Pin To Net: NetName=8 Pin=B4-2
+Added Pin To Net: NetName=INPUT Pin=B4-3
+Added Pin To Net: NetName=GND Pin=B4-4
+Added Pin To Net: NetName=9 Pin=B5-1
+Added Pin To Net: NetName=10 Pin=B5-2
+Added Pin To Net: NetName=INPUT Pin=B5-3
+Added Pin To Net: NetName=GND Pin=B5-4
+Added Pin To Net: NetName=11 Pin=B6-1
+Added Pin To Net: NetName=12 Pin=B6-2
+Added Pin To Net: NetName=INPUT Pin=B6-3
+Added Pin To Net: NetName=GND Pin=B6-4
+Added Pin To Net: NetName=13 Pin=B7-1
+Added Pin To Net: NetName=14 Pin=B7-2
+Added Pin To Net: NetName=INPUT Pin=B7-3
+Added Pin To Net: NetName=GND Pin=B7-4
+Added Pin To Net: NetName=15 Pin=B8-1
+Added Pin To Net: NetName=16 Pin=B8-2
+Added Pin To Net: NetName=INPUT Pin=B8-3
+Added Pin To Net: NetName=GND Pin=B8-4
+Added Pin To Net: NetName=17 Pin=B9-1
+Added Pin To Net: NetName=18 Pin=B9-2
+Added Pin To Net: NetName=INPUT Pin=B9-3
+Added Pin To Net: NetName=GND Pin=B9-4
+Added Pin To Net: NetName=19 Pin=B10-1
+Added Pin To Net: NetName=20 Pin=B10-2
+Added Pin To Net: NetName=INPUT Pin=B10-3
+Added Pin To Net: NetName=GND Pin=B10-4
+Added Pin To Net: NetName=INPUT Pin=C1-1
+Added Pin To Net: NetName=NetC1_2 Pin=C1-2
+Added Pin To Net: NetName=NetC1_2 Pin=D1-1
+Added Pin To Net: NetName=NetD1_2 Pin=D1-2
+Added Pin To Net: NetName=1 Pin=J1-1
+Added Pin To Net: NetName=2 Pin=J1-2
+Added Pin To Net: NetName=3 Pin=J1-3
+Added Pin To Net: NetName=4 Pin=J1-4
+Added Pin To Net: NetName=5 Pin=J1-5
+Added Pin To Net: NetName=6 Pin=J1-6
+Added Pin To Net: NetName=7 Pin=J1-7
+Added Pin To Net: NetName=8 Pin=J1-8
+Added Pin To Net: NetName=9 Pin=J1-9
+Added Pin To Net: NetName=10 Pin=J1-10
+Added Pin To Net: NetName=11 Pin=J1-11
+Added Pin To Net: NetName=12 Pin=J1-12
+Added Pin To Net: NetName=13 Pin=J1-13
+Added Pin To Net: NetName=14 Pin=J1-14
+Added Pin To Net: NetName=15 Pin=J1-15
+Added Pin To Net: NetName=16 Pin=J1-16
+Added Pin To Net: NetName=17 Pin=J1-17
+Added Pin To Net: NetName=18 Pin=J1-18
+Added Pin To Net: NetName=19 Pin=J1-19
+Added Pin To Net: NetName=20 Pin=J1-20
+Added Pin To Net: NetName=NetD1_2 Pin=J1-21
+Added Pin To Net: NetName=GND Pin=J1-22
+Change Net Name : Old Net Name=NetD1_2 New Net Name=21
+Added Member To Class: ClassName=Led Lighting Member=Component B1 
+Added Member To Class: ClassName=Led Lighting Member=Component B2 Bridge MB6s 2
+Added Member To Class: ClassName=Led Lighting Member=Component B3 Bridge MB6s 3
+Added Member To Class: ClassName=Led Lighting Member=Component B4 Bridge MB6s 4
+Added Member To Class: ClassName=Led Lighting Member=Component B5 Bridge MB6s 5
+Added Member To Class: ClassName=Led Lighting Member=Component B6 Bridge MB6s 6
+Added Member To Class: ClassName=Led Lighting Member=Component B7 Bridge MB6s 7
+Added Member To Class: ClassName=Led Lighting Member=Component B8 Bridge MB6s 8
+Added Member To Class: ClassName=Led Lighting Member=Component B9 Bridge MB6s 9
+Added Member To Class: ClassName=Led Lighting Member=Component B10 Bridge MB6s 10
+Added Member To Class: ClassName=Led Lighting Member=Component C1 Cap Pol3
+Added Member To Class: ClassName=Led Lighting Member=Component D1 LED3
+Added Member To Class: ClassName=Led Lighting Member=Component J1 Edge Con 22
+Added Room: Name=Led Lighting

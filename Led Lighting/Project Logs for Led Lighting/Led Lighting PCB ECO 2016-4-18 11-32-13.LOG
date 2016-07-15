@@ -1,0 +1,66 @@
+Added Component: Designator=C?(C0805)
+Added Component: Designator=D?(3.5X2.8X1.9)
+Added Component: Designator=P1(HDR1X2)
+Added Component: Designator=P2(HDR1X2)
+Added Component: Designator=P3(HDR1X2)
+Added Component: Designator=P4(HDR1X2)
+Added Component: Designator=P5(HDR1X2)
+Added Component: Designator=P6(HDR1X2)
+Added Component: Designator=P7(HDR1X2)
+Added Component: Designator=P8(HDR1X2)
+Added Component: Designator=P9(HDR1X2)
+Added Component: Designator=P10(HDR1X2)
+Added Component: Designator=P11(HDR1X2)
+Added Component: Designator=P?(HDR1X2)
+Added Component: Designator=P?(HDR1X2)
+Added Pin To Net: NetName=1 Pin=P1-1
+Added Net: Name=1
+Added Pin To Net: NetName=2 Pin=P1-2
+Added Net: Name=2
+Added Pin To Net: NetName=3 Pin=P2-1
+Added Net: Name=3
+Added Pin To Net: NetName=4 Pin=P2-2
+Added Net: Name=4
+Added Pin To Net: NetName=5 Pin=P3-1
+Added Net: Name=5
+Added Pin To Net: NetName=6 Pin=P3-2
+Added Net: Name=6
+Added Pin To Net: NetName=7 Pin=P4-1
+Added Net: Name=7
+Added Net: Name=8
+Added Pin To Net: NetName=9 Pin=P5-1
+Added Net: Name=9
+Added Pin To Net: NetName=10 Pin=P5-2
+Added Net: Name=10
+Added Pin To Net: NetName=11 Pin=P6-1
+Added Net: Name=11
+Added Pin To Net: NetName=12 Pin=P6-2
+Added Net: Name=12
+Added Pin To Net: NetName=13 Pin=P7-1
+Added Net: Name=13
+Added Pin To Net: NetName=14 Pin=P7-2
+Added Net: Name=14
+Added Pin To Net: NetName=15 Pin=P8-1
+Added Net: Name=15
+Added Pin To Net: NetName=16 Pin=P8-2
+Added Net: Name=16
+Added Pin To Net: NetName=17 Pin=P9-1
+Added Net: Name=17
+Added Pin To Net: NetName=18 Pin=P9-2
+Added Net: Name=18
+Added Pin To Net: NetName=19 Pin=P10-1
+Added Net: Name=19
+Added Pin To Net: NetName=20 Pin=P10-2
+Added Net: Name=20
+Added Pin To Net: NetName=GND Pin=P11-2
+Added Net: Name=GND
+Added Pin To Net: NetName=INPUT Pin=C?-1
+Added Net: Name=INPUT
+Added Pin To Net: NetName=NetC?_2 Pin=C?-2
+Added Pin To Net: NetName=NetC?_2 Pin=D?-1
+Added Net: Name=NetC?_2
+Added Pin To Net: NetName=NetD?_2 Pin=D?-2
+Added Pin To Net: NetName=NetD?_2 Pin=P11-1
+Added Net: Name=NetD?_2
+Added Class: Name=Led Lighting
+Added Room: Name=Led Lighting
